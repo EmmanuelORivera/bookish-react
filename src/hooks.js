@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { makeStyles } from "@material-ui/core";
 
 export const useRemoteService = (initial, url) => {
   const [data, setData] = useState(initial);
@@ -26,3 +27,22 @@ export const useRemoteService = (initial, url) => {
 
   return { data, error, loading };
 };
+
+export const useStyles = makeStyles((theme) => ({
+  root: { flexGrow: 1 },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+  name: {
+    maxHeight: 30,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
+  description: {
+    maxHeight: 40,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
+}));

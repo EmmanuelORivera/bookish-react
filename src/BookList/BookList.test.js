@@ -1,7 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import BookList from "./BookList";
+import BookList from ".";
+import { MemoryRouter as Router } from "react-router-dom";
 
 describe("BookList", () => {
   it("renders loading", () => {
@@ -27,7 +28,11 @@ describe("BookList", () => {
         { name: "Domain-driven design", id: 2 },
       ],
     };
-    const { container } = render(<BookList {...props} />);
+    const { container } = render(
+      <Router>
+        <BookList {...props} />
+      </Router>
+    );
     const titles = [...container.querySelectorAll("h2")].map(
       (x) => x.innerHTML
     );

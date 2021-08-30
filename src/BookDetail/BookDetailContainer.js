@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useRemoteService } from "./useRemoteService";
+import React from "react";
+import { useRemoteService } from "../hooks";
+import BookDetail from ".";
 
 const BookDetailContainer = ({ match }) => {
   const { data } = useRemoteService(
     {},
     `http://localhost:8080/books/${match.params.id}`
   );
-  return <h2 className="book-title">{data.name}</h2>;
+  return <BookDetail book={data} />;
 };
 
 export default BookDetailContainer;

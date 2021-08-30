@@ -1,6 +1,6 @@
 import React from "react";
-import BookList from "./BookList";
-import { useRemoteService } from "./useRemoteService";
+import BookList from ".";
+import { useRemoteService } from "../hooks";
 
 const BookListContainer = () => {
   const { data, error, loading } = useRemoteService(
