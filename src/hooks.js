@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core";
 
-export const useRemoteService = (initial, url) => {
-  const [data, setData] = useState(initial);
+export const useRemoteService = (initialData, initialUrl) => {
+  const [data, setData] = useState(initialData);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState(initialUrl);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -25,7 +26,7 @@ export const useRemoteService = (initial, url) => {
     fetchBooks();
   }, [url]);
 
-  return { data, error, loading };
+  return { data, error, loading, setUrl };
 };
 
 export const useStyles = makeStyles((theme) => ({
