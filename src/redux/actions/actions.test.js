@@ -66,12 +66,15 @@ describe("BookListContainer related actions", () => {
       { id: 1, name: "Refactoring" },
       { id: 2, name: "Domain-driven design" },
     ];
+    const term = "domain";
 
     axios.get = jest.fn(() => Promise.resolve({ data: books }));
 
-    const store = mockStore({ books: [] });
+    const store = mockStore({ books: [], term });
 
-    return store.dispatch(fetchBooks("domain")).then(() => {
+    store.dispatch(setSearchTerm(term));
+
+    return store.dispatch(fetchBooks()).then(() => {
       expect(axios.get).toHaveBeenCalledWith(
         "http://localhost:8080/books?q=domain"
       );
