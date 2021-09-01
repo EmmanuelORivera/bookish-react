@@ -21,4 +21,31 @@ describe("Reducer", () => {
 
     expect(state.books).toBe(books);
   });
+
+  it("Add term to state when set search term", () => {
+    const term = "domain";
+
+    const action = { type: types.SET_SEARCH_TERM, term };
+    const state = reducer([], action);
+
+    expect(state.term).toBe(term);
+  });
+
+  it("Returns the same state when type is not found", () => {
+    const type = "SOME_TYPE";
+
+    const action = { type, term: "" };
+    const state = reducer([], action);
+
+    expect(state).toEqual([]);
+  });
+
+  it("Should have an empty array as initialState when undefined is passed", () => {
+    const type = "SOME_TYPE";
+
+    const action = { type, term: "" };
+    const state = reducer(undefined, action);
+
+    expect(state).toEqual([]);
+  });
 });
