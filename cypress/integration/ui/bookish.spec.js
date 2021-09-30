@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiDomain } from "../../../src/utils/apiDomain";
 import {
   checkAppTitle,
   checkBookDetail,
@@ -12,9 +13,7 @@ import {
 } from "../../helpers";
 describe("Bookish application", () => {
   before(() => {
-    return axios
-      .delete("http://localhost:8080/books?_cleanup=true")
-      .catch((err) => err);
+    return axios.delete(`${apiDomain}?_cleanup=true`).catch((err) => err);
   });
 
   afterEach(() => {

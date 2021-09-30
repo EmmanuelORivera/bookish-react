@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiDomain } from "../../utils/apiDomain";
 import * as types from "../types";
 
 export const fetchBooks = () => {
@@ -6,7 +7,7 @@ export const fetchBooks = () => {
     dispatch({ type: types.FETCH_BOOKS_PENDING });
     const state = getState();
     return axios
-      .get(`http://localhost:8080/books?q=${state.term || ""}`)
+      .get(`${apiDomain()}?q=${state.term || ""}`)
       .then((res) => {
         dispatch({ type: types.FETCH_BOOKS_SUCCESS, books: res.data });
       })

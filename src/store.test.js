@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as actions from "./redux/actions/actions";
 import store from "./store";
+import { apiDomain } from "./utils/apiDomain";
 
 describe("Store", () => {
   const books = [{ id: 1, name: "Refactoring" }];
@@ -23,9 +24,7 @@ describe("Store", () => {
       const state = store.getState();
 
       expect(state.term).toEqual(term);
-      expect(axios.get).toHaveBeenCalledWith(
-        `http://localhost:8080/books?q=${term}`
-      );
+      expect(axios.get).toHaveBeenCalledWith(`${apiDomain()}?q=${term}`);
     });
   });
 });

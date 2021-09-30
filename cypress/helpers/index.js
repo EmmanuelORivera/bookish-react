@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiDomain } from "../../src/utils/apiDomain";
 
 export const checkAppTitle = () => {
   cy.get('h2[data-test="heading"]').contains("Bookish");
@@ -27,9 +28,7 @@ export const checkBookList = () => {
   ]);
 };
 export const cleanUpStubBooks = () => {
-  return axios
-    .delete("http://localhost:8080/books?_cleanup=true")
-    .catch((err) => err);
+  return axios.delete(`${apiDomain()}?_cleanup=true`).catch((err) => err);
 };
 
 export const feedStubBooks = () => {
@@ -40,7 +39,7 @@ export const feedStubBooks = () => {
   ];
 
   return books.map((book) =>
-    axios.post("http://localhost:8080/books", book, {
+    axios.post(`${apiDomain()}`, book, {
       headers: { "Content-Type": "application/json" },
     })
   );

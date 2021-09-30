@@ -8,6 +8,7 @@ import {
   FETCH_BOOKS_SUCCESS,
   SET_SEARCH_TERM,
 } from "../types";
+import { apiDomain } from "../../utils/apiDomain";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -75,9 +76,7 @@ describe("BookListContainer related actions", () => {
     store.dispatch(setSearchTerm(term));
 
     return store.dispatch(fetchBooks()).then(() => {
-      expect(axios.get).toHaveBeenCalledWith(
-        "http://localhost:8080/books?q=domain"
-      );
+      expect(axios.get).toHaveBeenCalledWith(`${apiDomain()}?q=domain`);
     });
   });
 });

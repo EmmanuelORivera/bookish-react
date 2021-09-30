@@ -1,12 +1,10 @@
 import React from "react";
 import { useRemoteService } from "../hooks";
 import BookDetail from ".";
+import { apiDomain } from "../utils/apiDomain";
 
 const BookDetailContainer = ({ match }) => {
-  const { data } = useRemoteService(
-    {},
-    `http://localhost:8080/books/${match.params.id}`
-  );
+  const { data } = useRemoteService({}, `${apiDomain()}/${match.params.id}`);
   return <BookDetail book={data} />;
 };
 

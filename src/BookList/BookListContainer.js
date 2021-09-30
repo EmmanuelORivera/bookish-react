@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { apiDomain } from "../utils/apiDomain";
 import BookList from ".";
 import { useRemoteService } from "../hooks";
 import SearchBox from "../SearchBox";
 
 const BookListContainer = () => {
   const [term, setTerm] = useState("");
-  const { data, error, loading, setUrl } = useRemoteService(
-    [],
-    "http://localhost:8080/books"
-  );
+  const { data, error, loading, setUrl } = useRemoteService([], apiDomain());
 
   const onSearch = (e) => setTerm(e.target.value);
 
   useEffect(() => {
-    setUrl(`http://localhost:8080/books?q=${term}`);
+    setUrl(`${apiDomain()}?q=${term}`);
   }, [term, setUrl]);
 
   return (
