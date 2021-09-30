@@ -4,7 +4,7 @@ import { TextField } from "@material-ui/core";
 const SearchBox = ({ term, onSearch }) => {
   const handleChange = (e) => {
     const { value } = e.target;
-    const isNotEmpty = (value) => !!value.trim();
+    const isNotEmpty = (value) => value.trim() !== "" || value.length === 0;
     if (isNotEmpty(value)) {
       return onSearch(e);
     }
